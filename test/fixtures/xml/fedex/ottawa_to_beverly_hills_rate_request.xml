@@ -15,7 +15,7 @@
   </TransactionDetail>
   <Version>
     <ServiceId>crs</ServiceId>
-    <Major>13</Major>
+    <Major>20</Major>
     <Intermediate>0</Intermediate>
     <Minor>0</Minor>
   </Version>
@@ -48,7 +48,7 @@
       <Indicia>PARCEL_SELECT</Indicia>
       <HubId>5902</HubId>
     </SmartPostDetail>
-    <RateRequestTypes>ACCOUNT</RateRequestTypes>
+    <RateRequestTypes>PREFERRED</RateRequestTypes>
     <PackageCount>2</PackageCount>
     <RequestedPackageLineItems>
       <GroupPackageCount>1</GroupPackageCount>

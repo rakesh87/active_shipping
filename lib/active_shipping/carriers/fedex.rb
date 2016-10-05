@@ -338,12 +338,6 @@ module ActiveShipping
               xml.PackageCount(packages.size)
               build_packages_nodes(xml, packages, imperial)
             end
-
-            # to force the prefered currency conversion
-            if option[:currency]
-              xml.PreferredCurrency(option[:currency])
-            end
-            end
           end
         end
       end

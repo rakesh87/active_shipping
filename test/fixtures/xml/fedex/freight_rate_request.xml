@@ -14,7 +14,7 @@
   </TransactionDetail>
   <Version>
     <ServiceId>crs</ServiceId>
-    <Major>13</Major>
+    <Major>20</Major>
     <Intermediate>0</Intermediate>
     <Minor>0</Minor>
   </Version>
@@ -77,6 +77,6 @@
         </Dimensions>
       </LineItems>
     </FreightShipmentDetail>
-    <RateRequestTypes>ACCOUNT</RateRequestTypes>
+    <RateRequestTypes>PREFERRED</RateRequestTypes>
   </RequestedShipment>
 </RateRequest>
