@@ -137,7 +137,7 @@ module ActiveShipping
     DEFAULT_LABEL_STOCK_TYPE = 'PAPER_7X4.75'
 
     # Available return formats for image data when creating labels
-    LABEL_FORMATS = ['DPL', 'EPL2', 'PDF', 'ZPLII', 'PNG'] 
+    LABEL_FORMATS = ['DPL', 'EPL2', 'PDF', 'ZPLII', 'PNG']
 
     def self.service_name_for_code(service_code)
       SERVICE_TYPES[service_code] || "FedEx #{service_code.titleize.sub(/Fedex /, '')}"
@@ -191,9 +191,9 @@ module ActiveShipping
       imperial = location_uses_imperial(origin)
 
       xml_builder = Nokogiri::XML::Builder.new do |xml|
-        xml.ProcessShipmentRequest(xmlns: 'http://fedex.com/ws/ship/v13') do
+        xml.ProcessShipmentRequest(xmlns: 'http://fedex.com/ws/ship/v20') do
           build_request_header(xml)
-          build_version_node(xml, 'ship', 13, 0 ,0)
+          build_version_node(xml, 'ship', 20, 0 ,0)
 
           xml.RequestedShipment do
             xml.ShipTimestamp(ship_timestamp(options[:turn_around_time]).iso8601(0))
@@ -292,9 +292,9 @@ module ActiveShipping
       imperial = location_uses_imperial(origin)
 
       xml_builder = Nokogiri::XML::Builder.new do |xml|
-        xml.RateRequest(xmlns: 'http://fedex.com/ws/rate/v13') do
+        xml.RateRequest(xmlns: 'http://fedex.com/ws/rate/v20') do
           build_request_header(xml)
-          build_version_node(xml, 'crs', 13, 0 ,0)
+          build_version_node(xml, 'crs', 20, 0 ,0)
 
           # Returns delivery dates
           xml.ReturnTransitAndCommit(true)
@@ -337,6 +337,12 @@ module ActiveShipping
               build_rate_request_types_node(xml)
               xml.PackageCount(packages.size)
               build_packages_nodes(xml, packages, imperial)
+            end
+
+            # to force the prefered currency conversion
+            if option[:currency]
+              xml.PreferredCurrency(option[:currency])
+            end
             end
           end
         end
