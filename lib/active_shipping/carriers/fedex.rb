@@ -411,7 +411,7 @@ module ActiveShipping
       end
     end
 
-    def build_rate_request_types_node(xml, type = 'ACCOUNT')
+    def build_rate_request_types_node(xml, type = 'PREFERRED')
       xml.RateRequestTypes(type)
     end
 
